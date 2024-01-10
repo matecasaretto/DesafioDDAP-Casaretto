@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     padding: 16,
     margin: 8,
     borderRadius: 8,
-    backgroundColor: colors.cuartary,
+    backgroundColor: colors.quartary,
   },
   imageCart: {
     width: 80,
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   brand: {
-    color: colors.gray,
+    color: colors.quinary,
   },
   price: {
     fontSize: 16,
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   buttonText: {
-    color: 'white',
+    color: colors.quinary,
     fontWeight: 'bold',
   },
 });

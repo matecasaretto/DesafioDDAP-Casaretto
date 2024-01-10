@@ -39,7 +39,7 @@ const ShopNavigator = () => {
                 options={
                     {
                         headerStyle: {
-                            backgroundColor: colors.cuartary
+                            backgroundColor: colors.quartary
                         } 
                     }
                 }/>

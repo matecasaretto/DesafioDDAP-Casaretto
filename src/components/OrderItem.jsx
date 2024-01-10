@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     padding: 16,
     margin: 8,
     borderRadius: 8,
-    backgroundColor: colors.cuartary, 
+    backgroundColor: colors.quartary, 
   },
   textContainer: {
     flex: 1,
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   },
   dateText: {
     fontSize: 16,
-    color: '#555', 
+    color: colors.quinary, 
   },
   totalText: {
     fontSize: 18,

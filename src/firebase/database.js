@@ -1,0 +1,1 @@
+export const base_url = 'https://appcoder-56680-default-rtdb.firebaseio.com/'

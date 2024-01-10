@@ -2,6 +2,7 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-nativ
 import { useState } from 'react'
 import { AntDesign } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
+import { colors } from '../global/colors';
 
 const Search = ({onSearchHandlerEvent}) => {
 
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent:  'space-between',
         padding: 5,
-        backgroundColor: '#fff'
+        backgroundColor: colors.quinary
     },
     TextInput: {
         width: '80%'

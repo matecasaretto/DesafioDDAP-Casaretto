@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     backgroundColor:  colors.secondary,
    },
    headerTitle: {
-    color: '#fff',
+    color: colors.quinary,
     fontFamily: 'Lato-Black',
     fontSize: 30
    }

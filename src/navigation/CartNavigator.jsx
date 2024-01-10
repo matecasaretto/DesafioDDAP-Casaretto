@@ -16,7 +16,7 @@ const CartNavigator = () =>{
                 options={
                     {
                         headerStyle: {
-                            backgroundColor: colors.cuartary
+                            backgroundColor: colors.quartary
                         }
                     }
                 }/>

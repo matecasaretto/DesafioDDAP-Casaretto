@@ -17,7 +17,7 @@ const OrderdsNavigator = () => {
                 options={
                     {
                         headerStyle: {
-                            backgroundColor: colors.cuartary
+                            backgroundColor: colors.quartary
                         } 
                     }
                 }/>

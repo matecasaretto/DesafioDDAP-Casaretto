@@ -58,7 +58,7 @@ export default TabNavigator
 
 const styles = StyleSheet.create({
     TabNavigator: {
-        backgroundColor: colors.cuartary,
+        backgroundColor: colors.quartary,
         position: "absolute",
         left: 25,
         right: 25,
