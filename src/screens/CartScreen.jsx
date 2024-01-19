@@ -1,20 +1,20 @@
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import CartItem from '../components/CartItem'
-import cart_data from '../data/cart_data.json'
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { usePostOrderMutation } from '../services/shopService'
 
 const CartScreen = () => {
 
-  const [ total, setTotal ] = useState(0)
 
-  useEffect(()=>{
-    const total = cart_data.reduce((acumulator, currentItem)=>(
-      acumulator+=currentItem.price*currentItem.quantity
-    ),0)
-    setTotal(total)
-  },[])
+  const cartItems = useSelector(state=>state.cartReducer.items)
+  const total = useSelector(state=>state.cartReducer.total)
+  const [triggerPost, result] = usePostOrderMutation()
 
+  const confirmCart=()=>{
+    triggerPost({total, cartItems, user:"Logged User"})
+  }
 
 
   const redenderCartItem = ({item}) =>{
@@ -26,13 +26,13 @@ const CartScreen = () => {
   return (
     <View>
       <FlatList
-      data={cart_data}
+      data={cartItems}
       renderItem={redenderCartItem}
       keyExtractor={item=>item.id}/>
 
       <View>
         <Text>Total:{total}</Text>
-        <TouchableOpacity onPress={null}>
+        <TouchableOpacity onPress={confirmCart}>
           <Text>Confirmar</Text>
         </TouchableOpacity>
       </View>

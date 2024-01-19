@@ -1,7 +1,9 @@
-import { ActivityIndicator, StyleSheet, Text, View, Image } from 'react-native'
+import { ActivityIndicator, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import products_data from '../data/products_data.json'
 import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import Header from '../components/Header'
+import { addItem } from '../features/cartSlice'
 
 const ProductDetailScreen = ({route}) => {
 
@@ -17,25 +19,33 @@ const ProductDetailScreen = ({route}) => {
   },
   [productId])
 
+  const dispatch = useDispatch();
+
+  const onAddToCart = () =>{
+    dispatch(addItem({...productSelected, quantity: 1}))
+  }
 
 
 
   return (
     <>
-     {/*  <Header title="Product Detail" /> */}
+      {/* <Header title="Product Detail" /> */}
       {isLoading ? (
-        <ActivityIndicator size="large" style={styles.ActivityIndicator} />
+        <ActivityIndicator size="large" style={styles.activityIndicator} />
       ) : (
         <View style={styles.container}>
           <View style={styles.detailsContainer}>
-          <Image
-            style={styles.productImage}
-            resizeMode="cover" 
-            source={{ uri: productSelected.images[0] }}
+            <Image
+              style={styles.productImage}
+              resizeMode="cover"
+              source={{ uri: productSelected.images[0] }}
             />
             <Text style={styles.productTitle}>{productSelected.title}</Text>
             <Text style={styles.productDescription}>{productSelected.description}</Text>
             <Text style={styles.productPrice}>Price: ${productSelected.price}</Text>
+            <TouchableOpacity style={styles.addToCartButton} onPress={onAddToCart}>
+              <Text style={styles.addToCartButtonText}>Agregar al carrito</Text>
+            </TouchableOpacity>
           </View>
         </View>
       )}
@@ -78,5 +88,17 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: 'green',
+  },
+  addToCartButton: {
+    backgroundColor: 'blue',
+    padding: 10,
+    borderRadius: 8,
+    marginTop: 16,
+  },
+  addToCartButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16,
+    textAlign: 'center',
   },
 });

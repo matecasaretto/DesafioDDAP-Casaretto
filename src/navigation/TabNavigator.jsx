@@ -1,19 +1,21 @@
-import { NavigationContainer } from "@react-navigation/native";
+
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet } from "react-native";
 import { colors } from "../global/colors";
 import { Fontisto } from '@expo/vector-icons'; 
 import { Foundation, MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { FontAwesome } from '@expo/vector-icons';
 
 import ShopNavigator from "./ShopNavigator";
 import CartNavigator from "./CartNavigator";
 import OrderdsNavigator from "./OrderdsNavigator";
+import ProfileNavigator from "./ProfileNavigator";
 
 const Tab = createBottomTabNavigator()
 
 const TabNavigator = () => {
     return(
-        <NavigationContainer>
+        
             <Tab.Navigator
             screenOptions={{
                 headerShown: false,
@@ -48,8 +50,18 @@ const TabNavigator = () => {
                     )
                 }}
                 />
+
+                <Tab.Screen 
+                name="ProfileStack" 
+                component={ProfileNavigator}
+                options={{
+                    tabBarIcon: ({focused})=> (
+                        <FontAwesome name="user-o" size={24} color={focused?'#808080':"black"} />
+                    )
+                }}
+                />
             </Tab.Navigator>
-        </NavigationContainer>
+        
         
     )
 }

@@ -1,7 +1,7 @@
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { useFonts } from 'expo-font'
 import { useState } from 'react';
-import TabNavigator from './src/navigation/TabNavigator';
+import MainNavigator from './src/navigation/MainNavigator';
 import { Provider } from 'react-redux';
 import store from './src/store';
 
@@ -26,7 +26,7 @@ export default function App() {
 
   return (
    <Provider store={store}>
-    <TabNavigator/>
+    <MainNavigator/>
    </Provider>
     
    

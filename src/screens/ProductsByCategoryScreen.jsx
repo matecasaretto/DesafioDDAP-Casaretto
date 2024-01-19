@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native'
 //import products_data from '../data/products_data.json' 
 import ProductItem from '../components/ProductItem'
 import React from 'react'
@@ -7,24 +7,26 @@ import Card from '../components/Card'
 import Search from '../components/Search'
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useGetProductsByCategoryQuery } from '../services/shopService'
 
 const ProductsByCategoryScreen = ({navigation, route}) => {
 
   const [ProductsByCategory, setProductsByCategory] = useState([])
   const [search, setSearch] = useState('')
   
-  //const {category} = route.params
   
   const category = useSelector(state=>state.shopReducer.categorySelected)
-  const productsFilteredByCategory = useSelector(state=>state.shopReducer.productsFilteredByCategory)
 
+  const {data: productsFilterByCategory, isLoading, error} = useGetProductsByCategoryQuery(category)
 
   useEffect(()=>{
-    //const productsFilterByCategory = products_data.filter(product=>product.category===category)
-    const productsFiltered = productsFilteredByCategory.filter(
-      product=>product.title.toLowerCase().includes(search.toLocaleLowerCase()))
-    setProductsByCategory(productsFiltered)
-    
+   
+    if(!isLoading){
+      const productsValues = Object.values(productsFilterByCategory)//Utilizamos esta funcion para solamente obtener los valores desde firebase
+      const productsFiltered = productsValues.filter(
+        product=>product.title.toLowerCase().includes(search.toLocaleLowerCase()))
+      setProductsByCategory(productsFiltered)
+    }
   },[category, search])
 
   const renderProductItem = ({item}) =>(
@@ -36,16 +38,22 @@ const ProductsByCategoryScreen = ({navigation, route}) => {
     }
   return (
     <>
-    {/* <Header title={'Products'}/> */}
-    <Search onSearchHandlerEvent = {onSearch}/>
+    {
+      isLoading
+      ?
+      <ActivityIndicator/>
+      :
+      <>
+      <Search onSearchHandlerEvent = {onSearch}/>
     <Card>
       <FlatList
     style={styles.FlatListEstilos}
     data={ProductsByCategory}
     renderItem={renderProductItem}
     keyExtractor={item=> item.id}/>
-    </Card>
-    
+    </Card> 
+    </>
+    }
     </>
 
   )
