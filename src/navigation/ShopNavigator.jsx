@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { colors } from '../global/colors'
+import Header from '../components/Header'
 
 //Vistas
 import CategoriesScreen from '../screens/CategoriesScreen'
@@ -12,14 +13,20 @@ const Stack = createNativeStackNavigator()
 const ShopNavigator = () => {
   return(
     
-         <Stack.Navigator>
+         <Stack.Navigator
+         initialRouteName="Categorías"
+                screenOptions={
+                    ({navigation, route}) => ({
+                        header: () => <Header title={route.name} navigation={navigation} />
+                    })
+                }>
             <Stack.Screen
                 name="Categorias"
                 component={CategoriesScreen}
                 options={
                     {
                         headerStyle: {
-                            backgroundColor: colors.cuartary
+                            backgroundColor: colors.quartary
                         }
                     }
                 }/>
@@ -29,7 +36,7 @@ const ShopNavigator = () => {
                 options={
                     {
                         headerStyle: {
-                            backgroundColor: colors.cuartary
+                            backgroundColor: colors.quartary
                         }   
                     }
                 }/>

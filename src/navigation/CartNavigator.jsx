@@ -9,7 +9,13 @@ const Stack = createNativeStackNavigator()
 const CartNavigator = () =>{
     return(
         <Stack.Navigator
-        initialRouteName='Carrito'>
+        initialRouteName="Carrito"
+        screenOptions={
+            ({navigation, route}) => ({
+                header: () => <Header title={route.name} navigation={navigation} />
+            })
+        }  
+    >
             <Stack.Screen
                 name="Carrito"
                 component={CartScreen}

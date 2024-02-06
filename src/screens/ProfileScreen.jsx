@@ -4,8 +4,6 @@ import { useSelector } from 'react-redux'
 import { colors } from '../global/colors'
 
 
-
-
 const ProfileScreen = ({navigation}) => {
   const image = useSelector(state=>state.authReducer.profilePicture)
   
@@ -45,7 +43,6 @@ const ProfileScreen = ({navigation}) => {
             <Text style={styles.userData}>Dirección: {user_data.address}</Text>
             <Text style={styles.userData}>{user_data.city}</Text>
         </View>
-        
     </View>
     </>
 )

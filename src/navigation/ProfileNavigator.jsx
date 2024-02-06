@@ -5,12 +5,19 @@ import ProfileScreen from '../screens/ProfileScreen'
 import ImageSelectorScreen from '../screens/ImageSelectorScreen'
 
 
+
 const Stack = createNativeStackNavigator()
 
 const ProfileNavigator = () =>{
     return(
         <Stack.Navigator
-        initialRouteName='Perfil'>
+        initialRouteName="Perfil"
+        screenOptions={
+            ({navigation, route}) => ({
+                header: () => <Header title={route.name} navigation={navigation} />
+            })
+        }  
+    >
             <Stack.Screen
                 name="Tu Perfil"
                 component={ProfileScreen}

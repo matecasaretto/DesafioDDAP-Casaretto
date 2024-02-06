@@ -4,7 +4,13 @@ import Card from './Card';
 import { colors } from '../global/colors';
 
 
-const CartItem = ({ item }) => {
+const CartItem = ({ item, onRemoveItem }) => {
+
+  const handleRemoveItem = () => {
+    
+    onRemoveItem(item.id); 
+  };
+
   return (
     <Card style={styles.container}>
       <Image
@@ -20,7 +26,7 @@ const CartItem = ({ item }) => {
           Cantidad: {item.quantity}, total: ${item.price * item.quantity}
         </Text>
       </View>
-      <TouchableOpacity onPress={null} style={styles.button}>
+      <TouchableOpacity onPress={handleRemoveItem} style={styles.button}>
         <Text style={styles.buttonText}>Eliminar</Text>
       </TouchableOpacity>
     </Card>

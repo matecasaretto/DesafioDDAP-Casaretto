@@ -27,7 +27,7 @@ const ProductsByCategoryScreen = ({navigation, route}) => {
         product=>product.title.toLowerCase().includes(search.toLocaleLowerCase()))
       setProductsByCategory(productsFiltered)
     }
-  },[category, search])
+  },[isLoading,category, search])
 
   const renderProductItem = ({item}) =>(
     <ProductItem item={item} navigation={navigation}/>

@@ -4,9 +4,13 @@ import { useState } from 'react';
 import MainNavigator from './src/navigation/MainNavigator';
 import { Provider } from 'react-redux';
 import store from './src/store';
+import { init } from './src/db';
 
 
 export default function App() {
+  init()
+  .then(()=>console.log("DataBase inicializada correctamente"))
+  .catch((error)=>console.log(error.message))
   
 
   const [fontLoaded] = useFonts({

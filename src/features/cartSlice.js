@@ -42,12 +42,28 @@ export const cartSlice = createSlice({
                 }
             }
         },
-        removeItem: (state, action)=>{
+        removeItem: (state, action) => {
+            const itemIdToRemove = action.payload;
+      
+            const updatedItems = state.items.filter((item) => item.id !== itemIdToRemove);
+      
+            const total = updatedItems.reduce(
+              (acc, current) => acc += current.price * current.quantity,
+              0
+            );
+      
+            state.items = updatedItems;
+            state.total = total;
+            state.updatedAt = Date.now().toLocaleString();
+          },
+          emptyCart: (state) => {
+            state.items = [];
+            state.total = 0;
+            state.updatedAt = Date.now().toLocaleString();
+          },
+        },
+      });
 
-        }
-    }
-})
-
-export const {addItem, removeItem} = cartSlice.actions
+export const {addItem, removeItem, emptyCart} = cartSlice.actions
 
 export default cartSlice.reducer
