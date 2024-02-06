@@ -43,15 +43,16 @@ export const fetchSession = () => {
     return promise
 }
 
-export const deleteSession = (localId) =>{
-    const promise = new Promise((resolve,reject)=>{
+export const deleteSession = (localId) => {
+    const promise = new Promise((resolve, reject)=>{
         db.transaction(tx=>{
             tx.executeSql(
                 'DELETE FROM sessions WHERE localId = ?',
                 [localId],
                 (_, result) => resolve(result),
                 (_, error) => reject(error)
-            )   
+            )
         })
     })
+    return promise
 }
